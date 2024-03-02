@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 export default () => {
   const [beijoCount, setBeijo] = useState(0)
 
@@ -22,7 +22,7 @@ export default () => {
       <h4> Clica no botão para receber muitos beijos 🥰</h4>
       <button onClick={() => setBeijo(beijoCount + 1)}>😍😘</button>
       <br />
-      
+
       {renderBeijos()}
     </>
   )
