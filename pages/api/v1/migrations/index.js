@@ -13,23 +13,29 @@ export default async function migrations(req, res) {
     migrationsTable: 'pgmigrations'
   }
 
-  if (req.method === 'GET') {
-    const migrations = await migrationRunner(defaultMigrationOptions);
+  try {
+
+    if (req.method === 'GET') {
+      const migrations = await migrationRunner(defaultMigrationOptions);
+  
+      return res.status(200).json(migrations);
+  
+    }
+  
+    if(req.method === 'POST'){
+      const migrations = await migrationRunner({
+        ...defaultMigrationOptions,
+        dryRun: false
+      });
+      
+      return res.status(200).json(migrations);
+    }
+
+    return res.status(405).end();
+
+  } catch (error) {
+    console.error(error);
+  } finally {
     await dbClient.end();
-
-    return res.status(200).json(migrations);
-
   }
-
-  if(req.method === 'POST'){
-    const migrations = await migrationRunner({
-      ...defaultMigrationOptions,
-      dryRun: false
-    });
-    await dbClient.end();
-    
-    return res.status(200).json(migrations);
-  }
-
-  return res.status(405).end();
 }
