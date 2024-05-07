@@ -8,7 +8,7 @@ export default async function status(req, res) {
 
   const databaseName = process.env.POSTGRES_DB;
   const dbCurrentCons = await database.query({
-    text:"SELECT COUNT(*)::int FROM pg_stat_activity WHERE datname = $1;",
+    text: "SELECT COUNT(*)::int FROM pg_stat_activity WHERE datname = $1;",
     values: [databaseName]
   });
 
