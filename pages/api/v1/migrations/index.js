@@ -9,17 +9,17 @@ export default async function migrations(req, res) {
       error: `Method "${req.method}" not allowed`
     });
 
-  const dbClient = await database.getNewClient();
-  const defaultMigrationOptions = {
-    dbClient: dbClient,
-    dryRun: true,
-    dir: join('infra', 'migrations'),
-    direction: 'up',
-    verbose: true,
-    migrationsTable: 'pgmigrations'
-  }
-
   try {
+    const dbClient = await database.getNewClient();
+    const defaultMigrationOptions = {
+      dbClient: dbClient,
+      dryRun: true,
+      dir: join('infra', 'migrations'),
+      direction: 'up',
+      verbose: true,
+      migrationsTable: 'pgmigrations'
+    }
+
 
     if (req.method === 'GET') {
       const migrations = await migrationRunner(defaultMigrationOptions);
