@@ -9,8 +9,9 @@ export default async function migrations(req, res) {
       error: `Method "${req.method}" not allowed`
     });
 
+  let dbClient;
   try {
-    const dbClient = await database.getNewClient();
+    dbClient = await database.getNewClient();
     const defaultMigrationOptions = {
       dbClient: dbClient,
       dryRun: true,
