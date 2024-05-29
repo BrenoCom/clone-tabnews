@@ -14,7 +14,7 @@
     "test:watch": "jest --watchAll --runInBand",
     "migration:create": "node-pg-migrate -m infra/migrations create",
     "migration:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
-    "services:check": "node infra/scripts/wait-for-postgress"
+    "services:check": "node infra/scripts/wait-for-postgres"
   },
   "author": "",
   "license": "MIT",
