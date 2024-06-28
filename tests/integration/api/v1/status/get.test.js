@@ -1,4 +1,12 @@
-const baseUrl = "http://localhost:3000" 
+import orquestrator from "tests/orquestrator";
+
+beforeAll(async () => {
+  await orquestrator.waitFroAllServices();
+})
+
+const baseUrl = process.env.SITE_URL;
+
+
 test("GET to /api/v1/status should return 200", async () => {
   const res = await fetch(baseUrl+"/api/v1/status");
   expect(res.status).toBe(200);

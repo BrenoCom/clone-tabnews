@@ -1,7 +1,12 @@
 
 import database from 'infra/database.js';
+import orquestrator from "tests/orquestrator";
 
-const baseUrl = "http://localhost:3000";
+beforeAll(async () => {
+  await orquestrator.waitFroAllServices();
+})
+
+const baseUrl = process.env.SITE_URL;
 
 beforeAll(cleanDatabase)
 async function cleanDatabase() {

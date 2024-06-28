@@ -1,12 +1,12 @@
 import database from 'infra/database.js';
+import orquestrator from "tests/orquestrator";
 
-const baseUrl = "http://localhost:3000";
-
-beforeAll(cleanDatabase)
-
-async function cleanDatabase() {
+beforeAll(async () => {
+  await orquestrator.waitFroAllServices();
   await database.query('drop schema public cascade; create schema public;');
-}
+})
+
+const baseUrl = process.env.SITE_URL;
 
 test("GET to /api/v1/migrations to return valid properties", async () => {
   const res = await fetch(baseUrl+"/api/v1/migrations");

@@ -1,14 +1,14 @@
 import database from 'infra/database.js';
 import * as fs from 'fs'
 import { join } from 'node:path'
+import orquestrator from "tests/orquestrator";
 
-const baseUrl = "http://localhost:3000";
-
-beforeAll(cleanDatabase)
-
-async function cleanDatabase() {
+beforeAll(async () => {
+  await orquestrator.waitFroAllServices();
   await database.query('drop schema public cascade; create schema public;');
-}
+})
+
+const baseUrl = process.env.SITE_URL;;
 
 function replaceLast(str, pattern, replacement) {
   const match =
@@ -25,14 +25,14 @@ function replaceLast(str, pattern, replacement) {
 test("POST to /api/v1/migrations to apply all migrations", async () => {
   // Get information about migrations before applying
   const migrationsResponse = await fetch(
-    "http://localhost:3000/api/v1/migrations"
+    baseUrl+"/api/v1/migrations"
   );
   const migrationsData = await migrationsResponse.json();
   const totalMigrationsToApply = migrationsData.length;
 
   // Perform the migration
   const applyMigrationResponse = await fetch(
-    "http://localhost:3000/api/v1/migrations",
+    baseUrl+"/api/v1/migrations",
     {
       method: "POST",
     }
