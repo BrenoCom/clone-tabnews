@@ -10,12 +10,15 @@ async function waitFroAllServices() {
   async function waitFroWebServer() {
     
     return retry(fetchStatusPage, {
-      retries: 100
+      retries: 100,
+      minTimeout: 1000
     });
     
     async function fetchStatusPage(parms) {
       const response = await fetch(siteUrl + "/api/v1/status");
-      const responseBody = await response.json();
+      if (!response.ok) {
+        throw Error();
+      }
     }
   }
 }
