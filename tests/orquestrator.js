@@ -13,7 +13,7 @@ async function waitFroAllServices() {
       minTimeout: 1000,
     });
 
-    async function fetchStatusPage(parms) {
+    async function fetchStatusPage() {
       const response = await fetch(siteUrl + "/api/v1/status");
       if (!response.ok) {
         throw Error();
@@ -21,7 +21,7 @@ async function waitFroAllServices() {
     }
   }
 }
-
-export default {
+const orquestrator = {
   waitFroAllServices,
 };
+export default orquestrator;
