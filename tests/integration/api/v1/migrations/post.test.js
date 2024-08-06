@@ -63,7 +63,7 @@ test("POST to /api/v1/migrations to return OK status", async () => {
   expect(Array.isArray(resBody)).toBe(true);
 });
 
-test("POST to /api/v1/migrations to apply all migrations", async () => {
+test("POST to /api/v1/migrations apply all migrations", async () => {
   // busca no bd quais migrations foram aplicadas
   const result = await database.query("SELECT * FROM pgmigrations;");
   // busca na pasta de migrations quais arquivos estão lá

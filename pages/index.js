@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default () => {
+const Page = () => {
   const [beijoCount, setBeijo] = useState(0);
 
   const renderBeijos = () => {
@@ -30,3 +30,4 @@ export default () => {
     </>
   );
 };
+export default Page;
