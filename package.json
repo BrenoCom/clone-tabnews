@@ -8,8 +8,8 @@
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:stop": "docker compose -f infra/compose.yaml stop",
     "services:down": "docker compose -f infra/compose.yaml down",
-    "lint:prittier:check": "prettier --check .",
-    "lint:prittier:fix": "prettier --write .",
+    "lint:prettier:check": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
     "lint:eslint:check": "next lint --dir .",
     "test": "npm run services:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand\"",
     "test:watch": "npm run services:up && concurrently -P -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --watchAll --runInBand -- {@}\" --",
@@ -30,6 +30,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "concurrently": "^8.2.2",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
