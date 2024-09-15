@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const siteUrl = process.env.SITE_URL;
 
-async function waitFroAllServices() {
+async function waitForAllServices() {
   await waitFroWebServer();
 
   async function waitFroWebServer() {
@@ -28,7 +28,7 @@ async function cleanDatabase() {
 }
 
 const orchestrator = {
-  waitFroAllServices,
+  waitForAllServices,
   cleanDatabase,
 };
 export default orchestrator;
