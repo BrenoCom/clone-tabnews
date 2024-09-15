@@ -1,14 +1,14 @@
-import orquestrator from "tests/orquestrator";
+import orchestrator from "tests/orchestrator";
 
 beforeAll(async () => {
-  await orquestrator.waitFroAllServices();
+  await orchestrator.waitFroAllServices();
 });
 
 const baseUrl = process.env.SITE_URL;
 
 beforeAll(cleanDatabase);
 async function cleanDatabase() {
-  await orquestrator.cleanDatabase();
+  await orchestrator.cleanDatabase();
 }
 
 describe("PUT /api/v1/migrations", () => {

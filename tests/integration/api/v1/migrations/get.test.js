@@ -1,8 +1,8 @@
-import orquestrator from "tests/orquestrator";
+import orchestrator from "tests/orchestrator";
 
 beforeAll(async () => {
-  await orquestrator.waitFroAllServices();
-  await orquestrator.cleanDatabase();
+  await orchestrator.waitFroAllServices();
+  await orchestrator.cleanDatabase();
 });
 
 const baseUrl = process.env.SITE_URL;
