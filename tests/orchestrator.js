@@ -1,10 +1,11 @@
+import database from "infra/database.js";
 import retry from "async-retry";
 import dotenv from "dotenv";
 
 dotenv.config();
 const siteUrl = process.env.SITE_URL;
 
-async function waitFroAllServices() {
+async function waitForAllServices() {
   await waitFroWebServer();
 
   async function waitFroWebServer() {
@@ -21,7 +22,13 @@ async function waitFroAllServices() {
     }
   }
 }
-const orquestrator = {
-  waitFroAllServices,
+
+async function cleanDatabase() {
+  await database.query("drop schema public cascade; create schema public;");
+}
+
+const orchestrator = {
+  waitForAllServices,
+  cleanDatabase,
 };
-export default orquestrator;
+export default orchestrator;
