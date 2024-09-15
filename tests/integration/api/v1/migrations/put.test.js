@@ -1,4 +1,3 @@
-import database from "infra/database.js";
 import orquestrator from "tests/orquestrator";
 
 beforeAll(async () => {
@@ -9,7 +8,7 @@ const baseUrl = process.env.SITE_URL;
 
 beforeAll(cleanDatabase);
 async function cleanDatabase() {
-  await database.query("drop schema public cascade; create schema public;");
+  await orquestrator.cleanDatabase();
 }
 
 describe("PUT /api/v1/migrations", () => {

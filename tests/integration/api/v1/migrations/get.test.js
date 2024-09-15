@@ -1,9 +1,8 @@
-import database from "infra/database.js";
 import orquestrator from "tests/orquestrator";
 
 beforeAll(async () => {
   await orquestrator.waitFroAllServices();
-  await database.query("drop schema public cascade; create schema public;");
+  await orquestrator.cleanDatabase();
 });
 
 const baseUrl = process.env.SITE_URL;
