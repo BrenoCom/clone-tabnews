@@ -33,6 +33,10 @@ export default async function migrations(req, res) {
         dryRun: false,
       });
 
+      if (migrations.length > 0) {
+        return res.status(201).json(migrations);
+      }
+
       return res.status(200).json(migrations);
     }
   } catch (error) {
