@@ -51,6 +51,7 @@ function DatabaseStatus() {
   }
   return (
     <>
+      <h1>Database</h1>
       <div>{loadingText}</div>
     </>
   );
