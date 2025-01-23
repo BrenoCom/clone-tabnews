@@ -7,7 +7,7 @@ async function query(queryObj) {
     client = await getNewClient();
     result = await client.query(queryObj);
   } catch (error) {
-    console.log('\n Erro dentro do catch do database.js:');
+    console.log("\n Erro dentro do catch do database.js:");
     console.error(error);
     throw error;
   } finally {
