@@ -6,16 +6,11 @@ beforeAll(async () => {
 
 const baseUrl = process.env.SITE_URL;
 
-beforeAll(cleanDatabase);
-async function cleanDatabase() {
-  await orchestrator.cleanDatabase();
-}
-
-describe("PUT /api/v1/migrations", () => {
+describe("POST /api/v1/status", () => {
   describe("Anonymous user", () => {
-    test("Should return a MethodNotAllowedError", async () => {
+    test("Should return 405", async () => {
       const res = await fetch(baseUrl + "/api/v1/status", {
-        method: "PUT",
+        method: "POST",
       });
       expect(res.status).toBe(405);
 

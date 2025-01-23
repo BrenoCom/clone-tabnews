@@ -2,7 +2,6 @@ import { InternalServerError, MethodNotAllowedError } from "./errors";
 
 // handlers para requisições via next-connect
 
-
 function onErrorHandler(error, req, res) {
   const publicErrorObj = new InternalServerError({
     statusCode: error.statusCode,
@@ -25,7 +24,7 @@ const defaulRoutetHandlerOptions = {
 };
 
 const controllerExports = {
-  errorHandlers: defaulRoutetHandlerOptions
-}
+  errorHandlers: defaulRoutetHandlerOptions,
+};
 
 export default controllerExports;
