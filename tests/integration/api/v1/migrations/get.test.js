@@ -14,7 +14,7 @@ describe("GET /api/v1/migrations", () => {
       expect(res.status).toBe(200);
 
       const resBody = await res.json();
-      console.log(resBody)
+      console.log(resBody);
       expect(Array.isArray(resBody)).toBe(true);
       expect(resBody.length).toBeGreaterThan(0);
     });

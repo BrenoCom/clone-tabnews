@@ -31,7 +31,7 @@ async function runPendingMigrations() {
     const pendingMigrations = await migrationRunner({
       ...defaultMigrationOptions,
       dbClient,
-      dryRun: false
+      dryRun: false,
     });
     return pendingMigrations;
   } finally {
